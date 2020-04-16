@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, Portal } from 'react-native-paper';
+
+import NewCategoryModal from './Modals/NewCategory';
 
 import {
   Container,
@@ -15,6 +17,8 @@ import {
 import temp from '../../assets/temp.png';
 
 export default function Home() {
+  const [newCategoryModal, setNewCategoryModal] = useState(false);
+
   const listData = [
     {
       id: 1,
@@ -32,6 +36,12 @@ export default function Home() {
 
   return (
     <Container>
+      <Portal>
+        <NewCategoryModal
+          visible={newCategoryModal}
+          setNewCategoryModal={setNewCategoryModal}
+        />
+      </Portal>
       <SearchContainer>
         <Searchbar placeholder="Procurar..." />
       </SearchContainer>
@@ -50,7 +60,7 @@ export default function Home() {
         icon="plus"
         color="#FFFF"
         size={40}
-        // onPress={() => console.warn('Pressed')}
+        onPress={() => setNewCategoryModal(true)}
       />
     </Container>
   );
