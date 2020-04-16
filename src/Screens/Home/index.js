@@ -55,10 +55,10 @@ export default function Home() {
           <CategoryCardButton
             onPress={() =>
               navigation.navigate('Receipts', {
-                type: item.name,
+                name: item.name,
               })
             }>
-            <BackgroundImage source={temp}>
+            <BackgroundImage source={temp} resizeMode="contain">
               <Title>{item.name}</Title>
             </BackgroundImage>
           </CategoryCardButton>

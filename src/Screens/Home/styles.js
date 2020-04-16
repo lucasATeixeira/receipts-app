@@ -40,7 +40,7 @@ export const Title = styled.Text`
 
 export const AddButton = styled(IconButton)`
   position: absolute;
-  background-color: #56dfb5;
+  background-color: ${(props) => props.theme.primary.default};
   bottom: 20px;
   right: 20px;
 `;

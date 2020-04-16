@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import { ThemeContext } from 'styled-components';
 
 import Welcome from './Screens/Welcome';
 import Home from './Screens/Home';
 import Receipts from './Screens/Receipts';
+import Receipt from './Screens/Receipt';
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default function Routes() {
   const [loading, setLoading] = useState(true);
+
+  const theme = useContext(ThemeContext);
 
   if (loading) {
     return <Welcome setLoading={setLoading} />;
@@ -23,7 +28,7 @@ export default function Routes() {
           options={{
             title: 'Escolha uma categoria',
             headerStyle: {
-              backgroundColor: '#56DFB5',
+              backgroundColor: theme.primary.default,
               height: 75,
               borderBottomLeftRadius: 10,
               borderBottomRightRadius: 10,
@@ -39,18 +44,32 @@ export default function Routes() {
           name="Receipts"
           component={Receipts}
           options={({ route }) => ({
-            title: route.params.type,
+            title: route.params.name,
             headerStyle: {
-              backgroundColor: '#56DFB5',
+              backgroundColor: theme.primary.default,
             },
-            headerBackTitleStyle: {
-              color: '#FFF',
-            },
+
             headerTitleStyle: {
               fontWeight: 'bold',
               color: '#eeee',
             },
           })}
+        />
+        <Screen
+          name="Receipt"
+          component={Receipt}
+          options={{
+            title: '',
+            headerBackTitleStyle: {
+              color: '#fff',
+              backgroundColor: '#fff',
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#eeee',
+            },
+          }}
         />
       </Navigator>
     </>
