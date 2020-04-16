@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { Searchbar, Portal } from 'react-native-paper';
 
 import NewCategoryModal from './Modals/NewCategory';
@@ -34,6 +36,8 @@ export default function Home() {
     },
   ];
 
+  const navigation = useNavigation();
+
   return (
     <Container>
       <Portal>
@@ -48,7 +52,12 @@ export default function Home() {
       <List
         data={listData}
         renderItem={({ item }) => (
-          <CategoryCardButton>
+          <CategoryCardButton
+            onPress={() =>
+              navigation.navigate('Receipts', {
+                type: item.name,
+              })
+            }>
             <BackgroundImage source={temp}>
               <Title>{item.name}</Title>
             </BackgroundImage>

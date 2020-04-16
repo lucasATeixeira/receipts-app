@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from './Screens/Welcome';
 import Home from './Screens/Home';
+import Receipts from './Screens/Receipts';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -17,9 +18,10 @@ export default function Routes() {
     <>
       <Navigator initialRouteName="Welcome">
         <Screen
-          name="Escolha o tipo da receita"
+          name="Home"
           component={Home}
           options={{
+            title: 'Escolha uma categoria',
             headerStyle: {
               backgroundColor: '#56DFB5',
               height: 75,
@@ -32,6 +34,23 @@ export default function Routes() {
               color: '#eeee',
             },
           }}
+        />
+        <Screen
+          name="Receipts"
+          component={Receipts}
+          options={({ route }) => ({
+            title: route.params.type,
+            headerStyle: {
+              backgroundColor: '#56DFB5',
+            },
+            headerBackTitleStyle: {
+              color: '#FFF',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#eeee',
+            },
+          })}
         />
       </Navigator>
     </>
