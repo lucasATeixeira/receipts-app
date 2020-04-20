@@ -8,6 +8,8 @@ import Home from './Screens/Home';
 import Receipts from './Screens/Receipts';
 import Receipt from './Screens/Receipt';
 
+import SettingsButton from './components/SettingsButton';
+
 const { Navigator, Screen } = createStackNavigator();
 
 export default function Routes() {
@@ -48,11 +50,26 @@ export default function Routes() {
             headerStyle: {
               backgroundColor: theme.primary.default,
             },
-
             headerTitleStyle: {
               fontWeight: 'bold',
               color: '#eeee',
             },
+            headerRight: () => (
+              <SettingsButton
+                options={[
+                  {
+                    name: 'Editar Categoria',
+                    icon: 'pencil',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Excluir Categoria',
+                    icon: 'trash-can-outline',
+                    action: () => {},
+                  },
+                ]}
+              />
+            ),
           })}
         />
         <Screen
@@ -69,6 +86,22 @@ export default function Routes() {
               fontWeight: 'bold',
               color: '#eeee',
             },
+            headerRight: () => (
+              <SettingsButton
+                options={[
+                  {
+                    name: 'Editar Receita',
+                    icon: 'pencil',
+                    action: () => {},
+                  },
+                  {
+                    name: 'Excluir Receita',
+                    icon: 'trash-can-outline',
+                    action: () => {},
+                  },
+                ]}
+              />
+            ),
           }}
         />
       </Navigator>
